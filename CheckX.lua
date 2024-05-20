@@ -216,9 +216,10 @@ function CheckAll()
 
   print("Checking exec...")
 
-  for funcName, _ in pairs(ExecCheck) do
+  for funcName, func in pairs(ExecCheck) do
     totalCount = totalCount + 1
-    if ExecCheck[funcName](funcName) then
+    local success = func(funcName) -- Call the function with its name as an argument
+    if success then
       print(funcName .. ": 🟩")
       successCount = successCount + 1
       table.insert(successfulFunctions, funcName)
@@ -231,6 +232,4 @@ function CheckAll()
   return successfulFunctions
 end
 
-return {CheckAll = CheckAll}
-
-
+return { CheckAll = CheckAll }
